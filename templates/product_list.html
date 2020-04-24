@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Products List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include "other_templates/navbar.html" %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_list.css' %}">
+    </head>
+
+    <body>
+        <div class="text-muted">
+          <div class="container">
+              <div class="select">
+                  <select name="sort" id="sort">
+                    <option {% if order_by == "0" %}selected="selected"{% endif %} value="0">Default sorting</option>
+                    <option {% if order_by == "1" %}selected="selected"{% endif %} value="1">Name ascending</option>
+                    <option {% if order_by == "2" %}selected="selected"{% endif %} value="2">Name descending</option>
+                    <option {% if order_by == "3" %}selected="selected"{% endif %} value="3">Newest</option>
+                    <option {% if order_by == "4" %}selected="selected"{% endif %} value="4">Oldest</option>
+                    <option {% if order_by == "5" %}selected="selected"{% endif %} value="5">Price low to high</option>
+                    <option {% if order_by == "6" %}selected="selected"{% endif %} value="6">Price high to low</option>
+                  </select>
+              </div>
+
+                  {% if products|length == 0 %}
+                      <h1 style="margin-top: 150px; text-align: center" >No products exist.</h1>
+                  {% else %}
+                      <div class="row" style="margin-top: 30px">
+                          {% for product in products %}
+                              <div class="col-md-12 item">
+                                  <div class="row">
+
+                                      <div class="col-xs-3 col-md-3 text-center">
+                                          <div class="cover_item">
+                                              <a href="{% url 'details_product' pk=product.id %} " target="_self">
+                                                  <img src="http://127.0.0.1:8000/{{ product.photo }}"
+                                                       alt="Click for details" class="item_img">
+                                                  <div class="hvrbox-layer_top">
+                                                      <div class="hvrbox-text">Click for details</div>
+                                                  </div>
+                                              </a>
+                                          </div>
+                                      </div>
+
+                                      <div class="col-sm-9 col-md-9 section-box">
+
+                                          <div class="row">
+                                              <a class="col-sm-9 col-md-9" href="{% url 'details_product' pk=product.id %}" target="_self">
+                                                  <h2  class="text-muted">{{ product.name }}</h2>
+                                              </a>
+                                              <span style="margin-top: 0.5%; margin-left: 4%">Created {{ product.time_passed_since_creation }}</span>
+                                          </div>
+                                          <h3 class="price">  Price: <span>{{ product.price }}€</span></h3>
+
+                                          <hr />
+                                          <div class="row rating-desc">
+                                              <div class="col-md-12">
+                                                  <p>Description: {{ product.description|linebreaksbr }}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          {% endfor %}
+                      </div>
+                  {% endif %}
+          </div>
+        </div>
+
+        <footer class="text-muted">
+            <div class="container">
+                {% if products.has_other_pages %}
+                    <div class="center">
+                        <div class="pagination">
+{#                            {% if page_obj.has_previous %}#}
+                            {% if products.has_previous %}
+                                <a href="?page={{ products.previous_page_number }}&order_by={{ order_by }}">&laquo;</a>
+                            {% else %}
+                                <a class="disabled">&laquo;</a>
+                            {% endif %}
+
+                            {% for i in products.paginator.page_range %}
+                                {% if products.number == i %}
+                                    <a class="active">{{ i }}</a>
+                                {% else %}
+                                    <a href="?page={{ i }}&order_by={{ order_by }}">{{ i }}</a>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if products.has_next %}
+                                  <a href="?page={{ products.next_page_number }}&order_by={{ order_by }}">&raquo;</a>
+                            {% else %}
+                                <a class="disabled">&raquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </footer>
+
+    </body>
+</html>
+
+
+
+<script>
+    $(function(){
+      // bind change event to select
+      $('#sort').on('change', function () {
+          const urlParams = new URLSearchParams(window.location.search);
+          const page = urlParams.get('page');
+
+          let order = $(this).val();
+          let url = window.location.href;
+          let final_url = "";
+
+          if (page !== null)
+              final_url += "?page="+page+"&order_by="+order;
+          else
+              final_url += "?order_by="+order;
+          if (url)
+            window.location.href = final_url;
+
+          return false;
+      });
+    });
+</script>

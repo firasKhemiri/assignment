@@ -1,0 +1,21 @@
+{% load static %}
+        <link rel="stylesheet" href="{% static 'imported_assets/css/bootsrap_4.0.0.css' %}">
+        <link rel="stylesheet" href="{% static 'imported_assets/js/bootstrap_4.0.0.js' %}">
+        <script src="{% static 'imported_assets/js/jquery.min_3.14.js' %}" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="{% static 'css/common.css' %}">
+
+
+<nav class="main-navigation">
+        <ul class="nav-list">
+            <li class="nav-list-item">
+                <a href="{% url 'list_products' %}" target="_self" class="nav-link">All Products</a>
+            </li>
+            <li class="nav-list-item">
+                <a href="{% url 'list_categories' %}" target="_self" class="nav-link">Categories</a>
+            </li>
+            <li class="nav-list-item">
+                <a href="{% url 'list_companies' %}" target="_self" class="nav-link">Companies</a>
+            </li>
+        </ul>
+    </nav>

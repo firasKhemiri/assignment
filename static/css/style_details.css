@@ -1,0 +1,120 @@
+
+/*****************GLOBALS*************/
+img {
+    max-width: 100%;
+    border-radius: 3%;}
+
+.tab-content {
+  overflow: hidden; }
+  .tab-content img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      -webkit-animation-name: opacity;
+      animation-name: opacity;
+      -webkit-animation-duration: .3s;
+      animation-duration: .3s; }
+
+.card {
+  margin-top: 100px;
+  background-color: #f7f7f7;
+  padding: 3em;
+  line-height: 1.5em;
+  border-radius: 10px;}
+
+@media screen and (min-width: 997px) {
+  .wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex; } }
+
+.details {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.details hr {margin-top: 0;margin-bottom: 5px;border: 0;border-top: 1px solid rgb(172, 157, 157);}
+
+
+.colors {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
+
+.product-title, .price{
+  text-transform: UPPERCASE;
+  font-weight: bold; }
+
+.price span {
+  color: #ff9f1a; }
+
+.product-title, .product-description, .price{
+  margin-bottom: 15px; }
+
+.prodcut-detail {margin-top: -10px;}
+
+.product-title {
+  margin-top: 0; }
+
+.tooltip-inner {
+  padding: 1.3em; }
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+
+/********** COMPANY IMAGE **********/
+.logo {
+    position: relative ;
+    top: -5px;
+    margin-bottom: -15px;
+    text-align: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(255,255,255,0.5);
+}
+
+.logo hr {margin-top: 0;margin-bottom: 0px;border: 0;border-top: 0px solid rgb(172, 157, 157);}
+
+
+/********* TAGS *********/
+.item{overflow:hidden; margin-top: 10px}
+.block-title{color: #48453d; margin-bottom:0px; font-size:18px; margin-top: 0px; font-weight:700; text-transform:uppercase;}
+
+.tags a{background-color: #cd4c4c; padding:10px; color:#fff; display:inline-block; font-size:11px; text-transform:uppercase; line-height:11px; border-radius:2px; margin-bottom:5px; margin-right:2px; text-decoration:none;}
+.tags a:hover{background-color: #631c19;}
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Products List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% include "other_templates/navbar.html" %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_list.css' %}">
+    </head>
+
+    <body>
+        <div class="text-muted">
+          <div class="container">
+            <div class="row" style="margin-top: 8%">
+
+                {% for company in companies %}
+                    <div class="col-md-12 item">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-xs-3 col-md-3 text-center">
+                                    <div class="cover_item">
+                                        <a href="{% url 'company_products' pk=company.id %}" target="_self">
+                                            <img src="http://127.0.0.1:8000/{{ company.logo }}" alt="Click for details"
+                                                 class="img-rounded img-responsive">
+                                            <div class="hvrbox-layer_top">
+                                                <div class="hvrbox-text">Click for details</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-9 col-md-9 section-box" style="margin-top: 3%">
+                                    <a href="{% url 'company_products' pk=company.id %}" target="_self">
+                                        <h2 class="text-muted">{{ company.name }}</h2>
+                                    </a>
+
+                                    <h3 class="price"> products count(Expired/Non expired):
+                                        <span>{{ company.products.all.count }}</span>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+          </div>
+        </div>
+
+        <footer class="text-muted">
+            <div class="container">
+                {% if is_paginated %}
+                    <div class="center">
+                        <div class="pagination">
+                            {% if page_obj.has_previous %}
+                                <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                            {% else %}
+                                <a class="disabled">&laquo;</a>
+                            {% endif %}
+
+                            {% for i in page_obj.paginator.page_range %}
+                                {% if page_obj.number == i %}
+                                    <a class="active">{{ i }}</a>
+                                {% else %}
+                                    <a href="?page={{ i }}">{{ i }}</a>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if page_obj.has_next %}
+                                  <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                            {% else %}
+                                <a class="disabled">&raquo;</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </footer>
+    </body>
+</html>

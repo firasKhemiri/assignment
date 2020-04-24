@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ category.name }} products</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style_company.css' %}">
+    </head>
+
+    <body>
+        <div class="logo">
+            <p><strong style="">{{ category.name }}</strong></p>
+            <hr/>
+        </div>
+        {% include "product_list.html" with products=products %}
+    </body>
+</html>
